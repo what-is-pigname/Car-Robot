@@ -28,7 +28,7 @@
   --font_number: "Courier Prime",serif;
   --font_special: "Playwrite NZ Basic",serif;
 
-  --img_intro: url("assets/images/bk.jpg");
+  --img_intro: url("/Car-Robot/assets/images/bk.jpg");
   --logo: url("../assets/images/logo.png");
   --icon_done:url("../Assets/Icons/checked.png");
   --icon_false:url("../Assets/Icons/delete.png");
