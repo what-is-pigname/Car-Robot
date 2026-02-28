@@ -60,7 +60,7 @@ function startCameraStream() {
   cam.src="http://192.168.1.8:81/stream";  
   cam.onerror = function() {
     addBluetoothLog("Không thể tải camera giám sát","error");
-    this.src = "../assets/images/map.png"; // Thay thế bằng ảnh dự phòng
+    this.src = "/Car-Robot/Assets/Images/map.png"; // Thay thế bằng ảnh dự phòng
     this.onerror = null;   // Quan trọng: Ngắt sự kiện để tránh lặp vô tận nếu map.png cũng lỗi
   };
 }
