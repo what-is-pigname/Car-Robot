@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <style>
+  /*=== link font chữ đặc biệt ===*/
+  @import url('https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+  </style>
+  <meta charset="UTF-8">
+  <!-- 1.Link CSS -->
+  <link rel="stylesheet" href="CSS\main.css">
+  <link rel="icon" href="Assets\Icons\browser.ico">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <title>Robot Explorer</title>
+</head>
+<body>  
+  <!-- 2.INTRO SCREEN -->
+  <div id="intro" class="intro_screen">
+    <h1>Robot Explorer</h1>
+    <div><p>Trường Cơ khí<br>Khoa cơ điện tử<br>Đồ án tốt nghiệp cử nhân</p></div>
+    <button id="connect-introscreen" >🔗 KẾT NỐI ROBOT</button>
+    <p1>©HUST2026</p1>
+  </div>
+
+  <!-- 3.Top bar -->
+  <header  class="top_bar" >
+    <div id="tb_header">Điều khiển Car Robot</div>
+    <div class="right-controls">
+      <div id="dpstatus" >Trạng thái kết nối</div>
+      <button id="menu-btn">☰</button>
+    </div>
+  </header>
+
+  <!-- ===== MENU ===== -->
+  <nav id="menu" class="menu-panel hidden">
+    <button data-page="home">🏠 Trang chủ</button>
+    <button data-page="tpl-connect">🔵 Kết nối Bluetooth</button>
+    <button data-page="tpl-settings">⚙️ Cài đặt</button>
+    <button data-page="tpl-about">ℹ️ Giới thiệu</button>
+  </nav>
+
+  <!-- ===== OVERLAY + MODAL ===== -->
+  <div id="overlay" class="hidden">     </div> 
+  <div id="modal" class="hidden">
+    <!-- TEMPLATE: KẾT NỐI -->
+    <div id="tpl-connect" class="modal-page hidden">
+      <div id="pg_connect">
+        <h2 class="pg_title">Kết nối Bluetooth</h2>
+        <p>
+          Kết nối thiết bị Bluetooth để truyền dữ liệu.
+        </p>
+        <p id="pgConnect_status">Trạng thái kết nối</p>
+        <div id="pgConnect_Gbutton">
+          <button id="pgConnect_btnConnect" class="button">
+            🔵 Kết nối
+          </button>
+          <button id="pgConnect_btnDisConnect" class="button">
+            ❌ Ngắt kết nối
+          </button>
+        </div>          
+      </div>
+    </div>
+
+    <!-- TEMPLATE: CÀI ĐẶT -->
+    <div id="tpl-settings" class="modal-page hidden">
+      <div id="pg_settings">
+        <h2 class="pg_title">Cài đặt</h2>
+        <div class="setting-item">
+          <label>Ngôn ngữ</label>
+          <select>
+            <option>Tiếng Việt</option>
+            <option>English</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label>Màu giao diện</label>
+          <input id="set-changecolor" type="color" value="#0d6efd">
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMPLATE: GIỚI THIỆU -->
+    <div id="tpl-about" class="modal-page hidden">
+      <div id="pg_about">
+        <h2 class="pg_title">Giới thiệu</h2>
+        <p>
+          Đồ án là kết quả nghiên cứu và thực nghiệm của nhóm 
+          khi thực hiện đề tài “Thiết kế, chế tạo mô hình robot 
+          ứng dụng Micro:bit và camera AI Huskylens”. Mục tiêu ban 
+          đầu của nhóm là tập trung tìm hiểu sâu về chức năng, cơ 
+          chế vận hành và khả năng ứng dụng thực tế của mạch điều 
+          khiển Micro:bit cùng camera AI Huskylens. Từ việc nghiên 
+          cứu các giải pháp thị giác máy tính hiện đại, đề tài đem
+          tới cái nhìn tổng quan về quy trình tích hợp trí tuệ nhân
+          tạo vào các hệ thống nhúng nhỏ gọn.  
+        </p>
+        <p>
+          Sau những năm tháng học tập tại trường Đại học Bách Khoa 
+          Hà Nội, chúng em xin bày tỏ lòng biết ơn sâu sắc tới Ban  
+          Giám hiệu cùng toàn thể thầy cô, đặc biệt là các thầy cô 
+          thuộc Trường Cơ khí đã tận tình truyền đạt kiến thức và tạo  
+          điều kiện tốt nhất cho chúng em rèn luyện.
+        </p>
+        <p>
+          Đặc biệt, chúng em xin gửi lời tri ân chân thành nhất tới 
+          TS. Nguyễn Hữu Quang. Thầy đã dành nhiều tâm huyết, trực 
+          tiếp định hướng và đưa ra những lời khuyên chuyên môn quý 
+          báu giúp chúng em hoàn thành đề tài: “Thiết kế, chế tạo 
+          mô hình robot ứng dụng Micro:bit và camera AI huskylens”.
+        </p>
+        <p>
+          Chúng em xin chân thành cảm ơn!
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- ===== MAIN SCREEN ===== -->
+  <main id="mainscreen">
+      <!-- Cột xanh trái -->
+      <div id="ms-Lside" class="animation_background"></div>
+
+      <!-- Nội dung chính -->
+      <div class="ms-main_content">
+        <div class="ms-left_part">
+          <div class="lp-above">
+            <!-- Cột trái -->
+            <div class="infor_box">
+              <h3 class="ms-title">Thông số</h3>
+              <div class="ib-properties">
+                <div>Servo Nâng: <span id="val_l">--</span></div>
+                <div>Servo Kẹp: <span id="val_p">--</span>%</div>  
+                <div>Servo Quay: <span id="val_s">--</span>°</div> 
+                <div>Phát hiện: <span id="val_vof">--</span> đối tượng</div>
+                <div>Vị trí: <span id="val_w">--</span></div>
+                <div>Độ lớn: <span id="val_h">--</span></div>
+                <div>Hướng mũi tên : <span id="val_a">--</span></div>
+                <div>Nhiệt độ: <span id="val_tem">--</span>°C</div>
+              </div>
+
+              <h3 class="ms-title">Thông báo</h3>
+              <div id="ib-log" class="ib-alarms">
+              </div>
+              <div>
+                <button id="bt-clearlog">🧹Clear</button> 
+              </div>
+
+            </div>
+            <!-- Màn hình giám sát -->
+            <div class="center-panel">
+              <h2 class="ms-title">Màn hình giám sát</h2>
+              <div class="cp-monitor">
+                <img id="monitor-camStream">
+              </div>
+
+              <!-- Nút dưới -->
+              <div class="bottom-buttons">
+                <div class="bb-BtGroup1">
+                  <button id="btn_left" class="btn-bb" >Trái</button>
+                  <button id="btn_right" class="btn-bb">Phải</button>
+                  <button id="btn_ahead" class="btn-bb">Tiến</button>
+                  <button id="btn_back" class="btn-bb">Lùi</button>
+                  <button id="btn_swivel" class="btn-bb">Quay </button>
+                </div>
+                <div class="bb-BtGroup2">
+                  <button id="btn_pass" class="btn-bb hidden">dừng</button>
+                  <button id="btn_up" class="btn-bb">Nâng</button>
+                  <button id="btn_down" class="btn-bb">Hạ</button>
+                  <button id="btn_clamp" class="btn-bb">Kẹp</button>
+                  <button id="btn_ReleaseClamp" class="btn-bb">Nhả</button>
+                </div>
+              </div>
+            </div>            
+          </div>
+          <div id="auto-programming" class="lp-under hidden">
+            <div class="AP-header">AUTO PROGRAM</div>
+            <div class="header-right">
+              <button id="btn_pause">⏹ Pause</button>
+              <button id="btn_resume">▶ Resume</button>
+            </div>
+            <div class="AP-wrapper">
+              <div id="AP-scale" class="AP-scale"></div>
+              <div id="AP-track" class="AP-track"></div>
+            </div>                      
+          </div>
+        </div>
+        <!-- Nút bên phải -->
+        <div class="ms-Rbuttons">
+          <div class="rb-BtGroup1">
+            <button id="btn_Stop" class="btn-rb1">Stop</button>
+            <button id="btn_Manual" class="btn-rb1">Manual</button>
+            <button id="btn_Auto" class="btn-rb1">Auto</button>
+          </div>
+          <div class="rb-BtGroup2">
+            <button id="btn_Line" class="btn-rb2">Line Tracking Mode</button>
+            <button id="btn_Follow" class="btn-rb2">Object Following Mode</button>
+          </div>
+          <div class="rb-BtGroup3 ">
+            <button id="btn_clcode" class="btn-rb3">Clear code</button>            
+            <button id="btn_compile" class="btn-rb3 bottom-space">▶ Compile</button>                        
+          </div>         
+        </div>
+
+      </div>
+
+      <!-- Cột xanh phải -->
+      <div id="ms-Rside" class="animation_background"></div>
+  </main>
+ 
+  <!-- 4.FOOTER -->
+  <footer id="footer">
+    
+  </footer>
+<div id="context-menu" class="context-menu hidden">
+  <div data-action="add">➕ Thêm</div>
+  <div data-action="edit">⏱ Sửa thời gian</div>
+  <div data-action="delete">🗑 Xóa</div>
+</div>  
+</body>
+
+<!-- 5.JS -->
+<script src="JS\main.js" defer></script>
+</html>

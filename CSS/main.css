@@ -1,0 +1,783 @@
+
+
+
+/* 1. Reset / Base */
+* { 
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+/* 2. Biến */
+:root {
+  --navbar_color: linear-gradient(135deg, #023e8a 0%, #0077b6 100%); 
+  --title-backgroundcolor: #669bbc;
+  --border:#ffbe0b;
+  --highlight-color: #bde0fe;
+  --log_background: #001d3d;
+  --log_infor: #ffff;
+  --log_warn: #fb8500;
+  --log_enror: #d62828;
+  --log_time: #c9ada7;
+  --bg-color: #fff;
+
+
+  --font_mstitle: "time new roman",serif;
+  --font_number: "Courier Prime",serif;
+  --font_special: "Playwrite NZ Basic",serif;
+
+  --img_intro: url("../assets/images/bk.jpg");
+  --logo: url("../assets/images/logo.png");
+  --icon_done:url("../Assets/Icons/checked.png");
+  --icon_false:url("../Assets/Icons/delete.png");
+  --icon_warning:url("../Assets/Icons/warning.png");
+}
+
+/* 3. Body */
+body {
+  font-family: var(--font-main);
+  text-align: center;
+  color: white;
+
+  overflow-y: hidden;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease;;
+}
+
+/* 4. Layout */
+
+.header { 
+
+  font-size: 3rem;
+
+}
+
+.content { 
+  font-size: 1rem;
+
+}
+
+.footer { 
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+.hidden {
+  display: none !important;
+}
+.visibility{
+  visibility:hidden;
+}
+/* ===Introscreen=== */
+.intro_screen {
+  position: fixed;        
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),var(--img_intro);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 9999;
+
+  transition: opacity 0.4s ease;
+} 
+.intro_screen h1 {
+  font-size: 3rem;
+  margin: 10px;
+}
+.intro_screen p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+.intro_screen p1 {
+  font-size: rem;
+  opacity: 1;
+
+  position: absolute; 
+  bottom: 40px;      
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  justify-content: center;
+}
+.intro_screen.hide {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#connect-introscreen {
+  font-size: 1.2rem;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(110, 142, 251, 0.4);
+  transition: all 0.3s ease;
+}
+#connect-introscreen:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(110, 142, 251, 0.6);
+} 
+
+/* ===== HEADER ===== */
+.top_bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background: var(--navbar_color);
+  border-bottom: 0.25rem solid var(--border);
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 15px;
+  z-index: 1000;
+}
+
+#tb_header {
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  padding-left: 2vw;
+}
+
+.right-controls {
+  width: 15vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#dpstatus{
+  font-size: 1.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+#menu-btn {
+  top: 15px;
+  right: 15px;
+
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  border-radius: 8px;
+  border: none;  
+  box-sizing: border-box;
+
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  background: #0d6efd;
+
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media (max-width: 600px) {
+  #menu {
+    width: calc(100vw - 30px);
+  }
+}
+
+/* ===== MENU ===== */
+.menu-panel {
+  position: fixed;
+  top: 60px;
+  right: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  padding: 10px;
+  z-index: 900;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-panel button {
+  padding: 8px;
+}
+
+/* ===== OVERLAY + MODAL ===== */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+
+  z-index: 100;
+}
+
+#modal {
+  background-image:
+  linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),var(--logo)
+  ;
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #000;
+
+  width: 50vw;
+  height: 50vh;
+
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 1rem;
+  border: 0.25rem solid #00b4d8;
+
+  z-index: 110;
+}
+
+.modal-page{
+  width: 100%;
+  height: 100%;
+}
+.modal-page .pg_title{
+  padding: 0.25rem;
+  box-sizing: border-box;
+
+  width: 100%;
+  background-color: var(--title-backgroundcolor);
+
+  color: #000;
+  font-weight: bold;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 3rem;
+}
+
+/* === About Screen === */
+#pg_about{
+
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Cách nhau một khoảng đều (nếu container có chiều cao cố định) */
+  gap: 20px; /* Hoặc dùng gap để cố định khoảng cách giữa các đoạn là 20px */
+  overflow-y: auto;
+  padding-right: 0.25rem; /* Chừa chỗ cho thanh cuộn không đè vào chữ */
+
+  z-index: 120;
+}
+
+#pg_about p{
+  font-family: var(--font_special);
+  font-size: 1rem;
+
+  /* text-align: justify; */
+  max-width: 50ch;     /* Giới hạn độ rộng để tự xuống dòng */
+  text-indent: 1rem;   /* Lùi lề chữ đầu đoạn */
+  line-height: 1.6;  /* Khoảng cách giữa các dòng trong đoạn cho dễ đọc */
+  overflow-wrap: break-word;
+}
+#pg_about::-webkit-scrollbar {
+  width: 0.5rem;
+}
+#pg_about::-webkit-scrollbar-thumb {
+  background: #ffb703;
+  border-radius: 10px;
+}
+
+/* === Connect Screen === */
+#pg_connect{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Cách nhau một khoảng đều (nếu container có chiều cao cố định) */
+  gap: 20px; /* Hoặc dùng gap để cố định khoảng cách giữa các đoạn là 20px */
+
+  font-size: 1.5rem;
+
+  z-index: 120;
+}
+
+#pg_connect .dpstatus{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2rem;
+}
+#pg_connect #pgConnect_Gbutton{
+  display: flex;
+  flex-direction: row; /* Dàn hàng ngang */
+  gap: 15px;           /* Khoảng cách giữa 2 nút */
+  margin-top: 10px;
+}
+#pg_connect #pgConnect_btnConnect {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+#pg_connect #pgConnect_btnDisConnect {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+#pg_connect #pgConnect_status{
+  font-size: 1.5rem;
+}
+
+/* === Settings screen === */
+#pg_settings{
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  box-sizing: border-box;
+
+  z-index: 120;
+}
+
+#pg_settings .ssetting-item{
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* ===== MAIN ===== */
+#mainscreen {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 60px;
+
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
+}
+#mainscreen .ms-title{
+  height: 1.5rem;
+  padding-left: 0.25rem ;
+  margin: 0.25rem;
+  box-sizing: border-box;
+
+  text-align: left;
+  color: #000;
+  font-size: 1.5rem;
+  font-family: var(--font_mstitle) ;
+}
+
+#ms-Rside{
+  width: 8%;
+  height: 100%;
+  border-left: 0.25rem solid var(--border) ;
+  box-sizing: border-box;
+  background-color: #000;
+
+}
+#ms-Lside{
+  width: 8%;
+  height: 100%;
+  border-right: 0.25rem solid var(--border) ;
+  box-sizing: border-box;
+  background-color: #000;
+
+}
+
+.ms-main_content{
+  width: 84%;
+  height: 100%;
+  border: none;
+  margin: 0 1rem ;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+}
+
+/* ms-left_part */
+.ms-left_part{
+  width: 95%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+/* lp-above */
+.lp-above{
+  width: 100%;
+  height: 80%;
+
+  display: flex;
+  flex-direction: row;
+}
+/* lp-under */
+.lp-under{
+  height: 20%;
+  width: 100%;
+}
+
+/* ===== AUTO PROGRAM PANEL ===== */
+
+#auto-programming {
+  position: relative;
+  background: #111;
+  padding: 15px;
+  border-top: 2px solid #0d6efd;
+  color: white;
+}
+
+/* Header + button cùng hàng */
+#auto-programming {
+  display: flex;
+  flex-direction: column;
+}
+
+.AP-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.header-right {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.header-right button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* ===== SCALE ===== */
+
+.AP-scale {
+  position: relative;
+  height: 30px;
+  border-bottom: 1px solid #333;
+}
+
+.scale-mark {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform: translateX(-1px);
+}
+
+.scale-mark::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 2px;
+  height: 10px;
+  background: #888;
+}
+
+.scale-mark span {
+  position: absolute;
+  top: -2px;
+  left: -5px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* ===== TRACK ===== */
+
+.AP-wrapper {
+  margin-top: 20px;
+}
+
+.AP-track {
+  display: flex;
+  height: 50px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ap-block {
+  background: #0d6efd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #222;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ap-block:hover {
+  background: #0b5ed7;
+}
+/* ===== CONTEXT MENU ===== */
+
+.context-menu {
+  position: absolute;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  width: 150px;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.context-menu div {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.context-menu div:hover {
+  background: #0d6efd;
+}
+
+/* infor_box */
+.infor_box{
+  width: 30%;
+  height: 100%;
+  padding-top: 1rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.ib-properties{
+  height: 12rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 0.25rem solid #0077b6;
+  margin-bottom: 0.5rem;
+
+  /* box-sizing: border-box; */
+
+  text-align: left;
+  color: #000;
+  font-size: 1rem;
+  font-family: var(--font_number);
+}
+.ib-properties div {
+  margin-left: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+.ib-properties span {
+  font-weight: bold;
+}
+
+.ib-alarms{
+  height: 50%;
+  padding: 0.5rem;
+  border: 0.25rem;
+  margin-bottom: 0.5rem;
+  box-sizing: border-box;
+  overflow-y: auto; 
+
+  background-color: var(--log_background);
+
+  text-align: left;
+  color: #ffb703;
+  line-height: 1.4;
+  font-family: var(--font_number);
+}
+.log-line {
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding: 2px 0;
+}
+.log-time {
+  color: var(--log_time); 
+}
+.log-msg{
+  display: block;
+}  
+.log-info  { color: var(--log_infor); }
+.log-warn  { color: var(--log_warn); }
+.log-error { color: var(--log_enror); }
+
+#bt-clearlog{
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 6rem;
+  height: 3rem;
+  border: none;
+  
+  text-align: center;
+  box-sizing: border-box;
+}
+/* center-panel */
+.center-panel{
+  width: 75%;
+  height: 100%;
+  padding-top: 1rem;
+  margin: 0 0.5rem ;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-monitor{
+  height: 83%;
+  padding: 0.25rem;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+#monitor-camStream {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+/* bottom-buttons */
+.bottom-buttons{
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bb-BtGroup1{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+
+}
+.bb-BtGroup2{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.btn-bb{
+  border-color:aqua;
+  padding: 0;
+  text-align: center;
+  height: 3rem;
+  width: 5rem;
+}
+/* ms-Rbuttons */
+.ms-Rbuttons{
+  width: 6%;
+  height: 100%;
+  padding-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+}
+.rb-BtGroup1{
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.rb-BtGroup2{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.rb-BtGroup3{
+  margin-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.btn-rb1{
+  border-color: darksalmon;
+  padding: 0;
+  text-align: center;
+  width: 6rem;
+  height: 2rem;
+}
+.btn-rb2{
+  border-color:darksalmon;
+  padding: 0;
+  text-align: center;
+  width: 6rem;
+  height: 6rem;
+}
+.btn-rb3{
+  padding: 0;
+  text-align: center;
+  width: 6rem;
+  height: 2rem;
+}
+.bottom-space{
+  margin-bottom: 3rem;
+}
+/* ===== UTILITY ===== */
+#trend {
+  margin: 20px auto;
+  width: 30%;
+  min-height: 60px;
+  border: 2px solid red;
+  padding: 10px;
+  font-size: 1rem;
+  background: #d5bdaf;
+}
+/* 5. Components */
+button {
+  padding: 10px 20px;
+  border-radius: 0.25rem; /* Nút bo tròn hiện đại */
+  border: 0.25rem solid #d32f2f;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+  background: #f0f0f0;
+
+  font-size: 1rem;
+}
+/* 6. Hiệu ứng */
+button:hover {
+  background: var(--highlight-color);
+  transform: translateY(-2px); /* Hiệu ứng nổi lên khi di chuột */
+}
+
+.btn_active{
+  background-color:chartreuse;
+}
+button:disabled,.btn_locked {
+    opacity: 0.5;                /* Làm mờ nút */
+    cursor: not-allowed;         /* Đổi icon chuột thành biển cấm */
+    filter: grayscale(100%);     /* Biến thành màu xám (tùy chọn) */
+    pointer-events: none;        /* Chặn hoàn toàn mọi tác động vật lý */
+    transition: all 0.3s ease;
+}
+
