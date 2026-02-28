@@ -29,7 +29,7 @@
   --font_special: "Playwrite NZ Basic",serif;
 
   --img_intro: url("/Car-Robot/Assets/Images/bk.jpg");
-  --logo: url("../assets/images/logo.png");
+  --logo: url("/Car-Robot/assets/images/logo.png");
   --icon_done:url("../Assets/Icons/checked.png");
   --icon_false:url("../Assets/Icons/delete.png");
   --icon_warning:url("../Assets/Icons/warning.png");
